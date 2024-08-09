@@ -1,3 +1,3 @@
-module github.com/schwarmco/go-cartesian-product
+module github.com/veqryn/go-cartesian-product
 
-go 1.21.0
+go 1.21

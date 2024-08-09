@@ -1,7 +1,7 @@
 # go-cartesian-product
 
-[![Build Status](https://travis-ci.org/schwarmco/go-cartesian-product.svg?branch=master)](https://travis-ci.org/schwarmco/go-cartesian-product)
-[![GoDoc](https://godoc.org/github.com/schwarmco/go-cartesian-product?status.svg)](https://godoc.org/github.com/schwarmco/go-cartesian-product)
+[![Build Status](https://travis-ci.org/veqryn/go-cartesian-product.svg?branch=master)](https://travis-ci.org/schwarmco/go-cartesian-product)
+[![GoDoc](https://godoc.org/github.com/veqryn/go-cartesian-product?status.svg)](https://godoc.org/github.com/schwarmco/go-cartesian-product)
 
 a package for building [cartesian products](https://en.wikipedia.org/wiki/Cartesian_product) in golang
 
@@ -12,7 +12,7 @@ keep in mind, that because [how golang handles maps](https://blog.golang.org/go-
 In order to start, `go get` this repository:
 
 ```
-go get github.com/schwarmco/go-cartesian-product
+go get github.com/veqryn/go-cartesian-product
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ package main
 
 import (
     "fmt"
-    "github.com/schwarmco/go-cartesian-product"
+    "github.com/veqryn/go-cartesian-product"
 )
 
 func main() {
@@ -55,7 +55,7 @@ package main
 
 import (
     "fmt"
-    "github.com/schwarmco/go-cartesian-product"
+    "github.com/veqryn/go-cartesian-product"
 )
 
 func main() {

@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/schwarmco/go-cartesian-product"
+	"github.com/veqryn/go-cartesian-product"
 )
 
 func ExampleIter() {
