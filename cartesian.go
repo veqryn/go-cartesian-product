@@ -1,28 +1,39 @@
 package cartesian
 
+import "slices"
+
 // Iter takes interface-slices and returns a channel, receiving cartesian products
-func Iter(params ...[]interface{}) chan []interface{} {
-	// create channel
-	c := make(chan []interface{})
-	if len(params) == 0 {
+func Iter[T any](sets ...[]T) chan []T {
+	if len(sets) == 0 {
+		c := make(chan []T)
 		close(c)
-		return c // Return a safe value for nil/empty params.
+		return c
 	}
+
+	buffer := 1
+	for _, set := range sets {
+		buffer *= len(set)
+	}
+	if buffer > 1000 {
+		buffer = 1000
+	}
+
+	c := make(chan []T, buffer)
 	go func() {
-		iterate(c, params[0], []interface{}{}, params[1:]...)
-		close(c)
+		defer close(c)
+		iterate(c, sets[0], make([]T, 0, len(sets)), sets[1:]...)
 	}()
 	return c
 }
 
-func iterate(channel chan []interface{}, topLevel, result []interface{}, needUnpacking ...[]interface{}) {
+func iterate[T any](c chan []T, topLevel, result []T, needUnpacking ...[]T) {
 	if len(needUnpacking) == 0 {
-		for _, p := range topLevel {
-			channel <- append(append([]interface{}{}, result...), p)
+		for _, val := range topLevel {
+			c <- append(slices.Clip(result), val)
 		}
 		return
 	}
-	for _, p := range topLevel {
-		iterate(channel, needUnpacking[0], append(result, p), needUnpacking[1:]...)
+	for _, val := range topLevel {
+		iterate(c, needUnpacking[0], append(result, val), needUnpacking[1:]...)
 	}
 }
