@@ -26,7 +26,7 @@ import (
 )
 
 func main() {
-    
+
     a := []any{1,2,3}
     b := []any{"a","b","c"}
 
@@ -47,5 +47,40 @@ func main() {
     // [2 b]
     // [3 a]
     // [3 b]
+}
+```
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/schwarmco/go-cartesian-product"
+)
+
+func main() {
+
+	a := map[string][]any{
+		"integers": {1, 2, 3},
+		"letters":  {"a", "b", "c"},
+	}
+
+	products := cartesian.IterMap(a)
+
+	// receive products through channel
+	for product := range products {
+		fmt.Println(product)
+	}
+
+	// Unordered Output:
+	// map[integers:1 letters:a]
+	// map[integers:2 letters:a]
+	// map[integers:3 letters:a]
+	// map[integers:1 letters:b]
+	// map[integers:2 letters:b]
+	// map[integers:3 letters:b]
+	// map[integers:1 letters:c]
+	// map[integers:2 letters:c]
+	// map[integers:3 letters:c]
 }
 ```
