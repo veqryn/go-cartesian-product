@@ -9,8 +9,8 @@ import (
 )
 
 func ExampleIter() {
-	a := []interface{}{1, 2, 3}
-	b := []interface{}{"a", "b", "c"}
+	a := []any{1, 2, 3}
+	b := []any{"a", "b", "c"}
 
 	c := cartesian.Iter(a, b)
 

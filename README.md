@@ -18,6 +18,8 @@ go get github.com/schwarmco/go-cartesian-product
 ## Usage
 
 ```go
+package main
+
 import (
     "fmt"
     "github.com/schwarmco/go-cartesian-product"
@@ -25,8 +27,8 @@ import (
 
 func main() {
     
-    a := []interface{}{1,2,3}
-    b := []interface{}{"a","b","c"}
+    a := []any{1,2,3}
+    b := []any{"a","b","c"}
 
     c := cartesian.Iter(a, b)
 
@@ -45,22 +47,5 @@ func main() {
     // [2 b]
     // [3 a]
     // [3 b]
-}
-```
-
-## Working with Types
-
-Because you are giving interfaces to Iter() and golang doesn't support mixed-type-maps (which is why i created this package) you have to assert types, when you do function-calls or something like that:
-
-```go
-
-func someFunc(a int, b string) {
-    // some code
-}
-
-// ...
-
-for product := range c {
-    someFunc(product[0].(int), product[1].(string))
 }
 ```
