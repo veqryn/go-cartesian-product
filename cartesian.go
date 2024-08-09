@@ -93,31 +93,3 @@ type keyedSlice[K comparable, V any] struct {
 	Key    K
 	Values []V
 }
-
-func iterateMapbad[K comparable, V any](c chan map[K]V, topLevelKey K, topLevelValues []V, result map[K]V, needUnpacking map[K][]V) {
-	if len(needUnpacking) == 0 {
-		for _, val := range topLevelValues {
-			finalResult := maps.Clone(result)
-			finalResult[topLevelKey] = val
-			c <- finalResult
-		}
-		return
-	}
-	for _, val := range topLevelValues {
-		// nextTopLevelKey, nextTopLevelValues := popMapEntry(needUnpacking)
-		nextResult := maps.Clone(result)
-		nextResult[topLevelKey] = val
-		// iterateMap(c, nextTopLevelKey, nextTopLevelValues, nextResult, needUnpacking)
-	}
-}
-
-// popMapEntry removes and returns 1 pseudo-random key-value pair from a map
-func popMapEntry[K comparable, V any](m map[K]V) (K, V) {
-	var k K
-	var v V
-	for k, v = range m {
-		break
-	}
-	delete(m, k)
-	return k, v
-}
